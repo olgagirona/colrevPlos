@@ -1,0 +1,5 @@
+title: {{project_title}}
+description: >-
+  This repository is based on the <a href="https://github.com/CoLRev-Environment/colrev">ColRev</a> standard.
+
+theme: minima

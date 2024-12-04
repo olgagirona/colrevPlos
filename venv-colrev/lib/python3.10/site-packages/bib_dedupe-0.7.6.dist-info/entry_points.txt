@@ -1,0 +1,3 @@
+[console_scripts]
+bib-dedupe=bib_dedupe.cli:main
+

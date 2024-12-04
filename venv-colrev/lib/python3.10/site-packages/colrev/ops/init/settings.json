@@ -1,0 +1,162 @@
+{
+    "project": {
+        "title": "",
+        "authors": [],
+        "keywords": [],
+        "protocol": null,
+        "review_type": "literature_review",
+        "id_pattern": "three_authors_year",
+        "share_stat_req": "processed",
+        "delay_automated_processing": false,
+        "colrev_version": "-",
+        "auto_upgrade": true
+    },
+    "sources": [
+        {
+            "endpoint": "colrev.files_dir",
+            "filename": "data/search/files.bib",
+            "search_type": "FILES",
+            "search_parameters": {"scope": {"path": "data/pdfs"}},
+            "comment": ""
+        }
+    ],
+    "search": {
+        "retrieve_forthcoming": true
+    },
+    "load": {},
+    "prep": {
+        "fields_to_keep": [],
+        "defects_to_ignore": [],
+        "prep_rounds": [
+            {
+                "name": "prep",
+                "prep_package_endpoints": [
+                    {
+                        "endpoint": "colrev.source_specific_prep"
+                    },
+                    {
+                        "endpoint": "colrev.exclude_non_latin_alphabets"
+                    },
+                    {
+                        "endpoint": "colrev.exclude_collections"
+                    },
+                    {
+                        "endpoint": "colrev.exclude_complementary_materials"
+                    },
+                    {
+                        "endpoint": "colrev.local_index"
+                    },
+                    {
+                        "endpoint": "colrev.exclude_languages"
+                    },
+                    {
+                        "endpoint": "colrev.remove_urls_with_500_errors"
+                    },
+                    {
+                        "endpoint": "colrev.remove_broken_ids"
+                    },
+                    {
+                        "endpoint": "colrev.get_doi_from_urls"
+                    },
+                    {
+                        "endpoint": "colrev.get_year_from_vol_iss_jour"
+                    },
+                    {
+                        "endpoint": "colrev.crossref"
+                    },
+                    {
+                        "endpoint": "colrev.pubmed"
+                    },
+                    {
+                        "endpoint": "colrev.europe_pmc"
+                    },
+                    {
+                        "endpoint": "colrev.dblp"
+                    },
+                    {
+                        "endpoint": "colrev.open_library"
+                    }
+                ]
+            }
+        ],
+        "prep_man_package_endpoints": [
+            {
+                "endpoint": "colrev.export_man_prep"
+            }
+        ]
+    },
+    "dedupe": {
+        "dedupe_package_endpoints": [
+            {
+                "endpoint": "colrev.dedupe"
+            }
+        ]
+    },
+    "prescreen": {
+        "explanation": "",
+        "prescreen_package_endpoints": [
+            {
+                "endpoint": "colrev.colrev_cli_prescreen"
+            }
+        ]
+    },
+    "pdf_get": {
+        "pdf_path_type": "symlink",
+        "pdf_required_for_screen_and_synthesis": true,
+        "defects_to_ignore": [],
+        "rename_pdfs": true,
+        "pdf_get_package_endpoints": [
+            {
+                "endpoint": "colrev.local_index"
+            },
+            {
+                "endpoint": "colrev.unpaywall"
+            },
+            {
+                "endpoint": "colrev.download_from_website"
+            }
+        ],
+        "pdf_get_man_package_endpoints": [
+            {
+                "endpoint": "colrev.colrev_cli_pdf_get_man"
+            }
+        ]
+    },
+    "pdf_prep": {
+        "keep_backup_of_pdfs": true,
+        "pdf_prep_package_endpoints": [
+            {
+                "endpoint": "colrev.ocrmypdf"
+            },
+            {
+                "endpoint": "colrev.remove_coverpage"
+            },
+            {
+                "endpoint": "colrev.remove_last_page"
+            },
+            {
+                "endpoint": "colrev.grobid_tei"
+            }
+        ],
+        "pdf_prep_man_package_endpoints": [
+            {
+                "endpoint": "colrev.colrev_cli_pdf_prep_man"
+            }
+        ]
+    },
+    "screen": {
+        "criteria": {},
+        "screen_package_endpoints": [
+            {
+                "endpoint": "colrev.colrev_cli_screen"
+            }
+        ]
+    },
+    "data": {
+        "data_package_endpoints": [
+            {
+                "endpoint": "colrev.rev_check"
+            }
+        ]
+    }
+}

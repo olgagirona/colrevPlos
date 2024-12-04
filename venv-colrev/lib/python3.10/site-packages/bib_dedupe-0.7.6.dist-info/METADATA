@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: bib-dedupe
+Version: 0.7.6
+Summary: Identify and merge duplicates in bibliographic records
+Home-page: https://github.com/CoLRev-Environment/bib-dedupe
+License: MIT
+Keywords: de-duplication,duplicate,meta-analysis,research,reproducible research,open science,literature,literature review,systematic review,systematic literature review
+Author: Gerit Wagner
+Author-email: gerit.wagner@uni-bamberg.de
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Classifier: Typing :: Typed
+Provides-Extra: dev
+Provides-Extra: with-data
+Requires-Dist: asreview (>=1.5,<2.0) ; extra == "with-data"
+Requires-Dist: coverage[toml] (>=7.3.2,<8.0.0) ; extra == "dev"
+Requires-Dist: number-parser (>=0.3.2,<0.4.0)
+Requires-Dist: numpy (>=1.19.5,<2.0.0)
+Requires-Dist: pandas (>=1.3.4,<2.0.0) ; extra == "with-data"
+Requires-Dist: pylint (==3.0.1) ; extra == "dev"
+Requires-Dist: pytest (>=7.2.1,<8.0.0) ; extra == "dev"
+Requires-Dist: rapidfuzz (>=3.5.2,<4.0.0)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Requires-Dist: setuptools (>=69.1.1,<70.0.0)
+Requires-Dist: tqdm (>=4.66.1,<5.0.0)
+Project-URL: Documentation, https://colrev-environment.github.io/bib-dedupe/
+Project-URL: Repository, https://github.com/CoLRev-Environment/bib-dedupe
+Description-Content-Type: text/markdown
+
+<div align="center">
+
+# BibDedupe
+
+
+<!-- [![License](https://img.shields.io/github/license/CoLRev-Ecosystem/bib-dedupe.svg)](https://github.com/CoLRev-Environment/bib-dedupe/releases/) -->
+[![status](https://joss.theoj.org/papers/b954027d06d602c106430e275fe72130/status.svg)](https://joss.theoj.org/papers/b954027d06d602c106430e275fe72130)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bib-dedupe)<br>
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/CoLRev-Environment/bib-dedupe/.github%2Fworkflows%2Ftests.yml?label=tests)](https://github.com/CoLRev-Environment/bib-dedupe/actions/workflows/tests.yml)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/CoLRev-Environment/bib-dedupe/.github%2Fworkflows%2Fdocs.yml?label=docs)](https://github.com/CoLRev-Environment/bib-dedupe/actions/workflows/docs.yml)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/CoLRev-Environment/bib-dedupe/.github%2Fworkflows%2Fevaluate.yml?label=continuous%20evaluation)](https://github.com/CoLRev-Environment/bib-dedupe/actions/workflows/evaluate.yml)
+
+</div>
+
+## Overview
+
+BibDedupe is an open-source **Python library for deduplication of bibliographic records**, tailored for literature reviews.
+Unlike traditional deduplication methods, BibDedupe focuses on entity resolution, linking duplicate records instead of simply deleting them.
+
+## Features
+
+- **Automated Duplicate Linking with Zero False Positives**: BibDedupe automates the duplicate linking process with a focus on eliminating false positives.
+- **Preprocessing Approach**: BibDedupe uses a preprocessing approach that reflects the unique error generation process in academic databases, such as author re-formatting, journal abbreviation or translations.
+- **Entity Resolution**: BibDedupe does not simply delete duplicates, but it links duplicates to resolve the entitity and integrates the data. This allows for validation, and undo operations.
+- **Programmatic Access**: BibDedupe is designed for seamless integration into existing research workflows, providing programmatic access for easy incorporation into scripts and applications.
+- **Transparent and Reproducible Rules**: BibDedupe's blocking and matching rules are transparent and easily reproducible to promote reproducibility in deduplication processes.
+- **Continuous Benchmarking**: Continuous integration tests running on GitHub Actions ensure ongoing benchmarking, maintaining the library's reliability and performance across datasets.
+- **Efficient and Parallel Computation**: BibDedupe implements computations efficiently and in parallel, using appropriate data structures and functions for optimal performance.
+
+## Documentation
+
+Explore the [official documentation](https://colrev-environment.github.io/bib-dedupe/) for comprehensive information on installation, usage, and customization of BibDedupe.
+
+## Citation
+
+If you use BibDedupe in your research, please cite it as follows:
+
+Wagner, G. (2024) BibDedupe - An open-source Python library for deduplication of bibliographic records. Available at https://github.com/CoLRev-Environment/bib-dedupe.
+
+
+## Contribution Guidelines
+
+We welcome contributions from the community to enhance and expand BibDedupe. If you would like to contribute, please follow our [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+BibDedupe is released under the [MIT License](LICENSE), allowing free and open use and modification.
+
+## Contact
+
+For any questions, issues, or feedback, please open an [issue](https://github.com/CoLRev-Environment/bib-dedupe/issues) on our GitHub repository.
+
+Happy deduplicating with BibDedupe!
+
