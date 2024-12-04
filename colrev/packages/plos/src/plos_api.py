@@ -22,7 +22,7 @@ from colrev.constants import Filepaths
 from colrev.packages.crossref.src import record_transformer
 
 LIMIT = 100 #Number max of elements returned
-#MAXOFFSET = 1000
+MAXOFFSET = 1000
 
 #Creates a session with cache
 SESSION = requests_cache.CachedSession(
@@ -202,7 +202,55 @@ class Enpoint:
 
         if self.CURSOR_AS_ITER_METHOD is True:
             request_params = dict(self.request_params)
-            request_params["**"]
+            request_params["cursor"] = "*"
+            request_params["rows"] = str(LIMIT)
+            while True:
+
+                result = self.retrieve(
+                    request_url,
+                    data=request_params,
+                    headers=self.headers
+                )
+
+                if result.status_code == 404:
+                    return
+
+                result = result.json()
+
+                if len(result["message"]["items"]) == 0:
+                    return
+
+                yield from result["message"]["items"]
+
+                request_params["cursor"] = result["message"]["next-cursor"]
+
+        else:
+            request_params = dict(self.request_params)
+            request_params["offset"] = "0"
+            request_params["rows"] = str(LIMIT)
+
+            while True:
+                result = self.retrieve(
+                    request_url,
+                    data=request_params,
+                    headers=self.headers,
+                )
+
+                if result.status_code == 404:
+                    return
+
+                result = result.json()
+
+                if len(result["message"]["items"]) == 0:
+                    return
+
+                yield from result["message"]["items"]
+
+                request_params["offset"] = str(int(request_params["offset"]) + LIMIT)
+
+                if int(request_params["offset"]) >= MAXOFFSET:
+                    msg = "Offset exceded the max offset of %d"
+                    raise MaxOffsetError(msg, MAXOFFSET)
 
 
 
