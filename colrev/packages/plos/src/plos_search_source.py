@@ -94,6 +94,20 @@ class PlosSearchSource:
             comment="",
         )
 
+    def _restore_url(
+          self, 
+          *,
+          record: colrev.record.record.Record,
+          feed: colrev.ops.search_api_feed.SearchAPIFeed
+    ) -> None:
+       "Restore the url from the feed if it exist"
+
+       prev_record = feed.get_prev_feed_record(record)
+       prev_url = prev_record.data.get(Fields.URL, None)
+
+       if prev_url is None:
+          return
+       record.data[Fields.URL] = prev_url
 
     def heuristic(self, filename, data):
       """Heuristic to identify to which SearchSource a search file belongs (for DB searches)"""
