@@ -201,7 +201,32 @@ class PlosSearchSource:
            return
         
         #retracted??
+
+    def _run_md_search(
+          self, 
+          plos_feed: colrev.ops.search_api_feed.SearchAPIFeed,
+    ) -> None:
+       
+        input(plos_feed)
+       
+        for feed_record_dict in plos_feed.feed_records.values():
+            try:
+                retrieved_record = self.api.query_doi(doi=feed_record_dict)
+
+                if retrieved_record.data[Fields.DOI] != feed_record_dict[Fields.DOI]:
+                    continue
+
+                self._restore_url(record=retrieved_record, feed=plos_feed)
+                plos_feed.add_update_record(retrieved_record)
+            except (
+                colrev_exceptions.RecordNotFoundInPrepSourceException,
+                colrev_exceptions.NotFeedIdentifiableException,
+            ):
+                continue
         
+        plos_feed.save()
+       
+
 
 
     def _run_api_search( 
@@ -317,6 +342,11 @@ class PlosSearchSource:
                 plos_feed=plos_feed,
                 rerun=rerun,
             )
+
+        elif self.search_source.search_type == SearchType.MD:
+            self._run_md_search(plos_feed)
+        else:
+            raise NotImplementedError
 
         if self.search_source.search_type == SearchType.API:
           pass
