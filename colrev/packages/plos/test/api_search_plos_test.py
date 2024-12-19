@@ -120,7 +120,7 @@ import colrev.record.record_prep
 )
 def test_plos_query(
     doi: str,
-    expected_dic: dict
+    expected_dict: dict
 ) -> None:
     api = plos_api.PlosAPI(params={})
 
