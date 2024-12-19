@@ -334,7 +334,7 @@ class PlosAPI:
         self.rerun = rerun
 
     def check_availability(self, raise_service_not_available: bool = True) -> None:
-
+        input("entro a check_avaibility en la api")
         try:
             test_rec = {
                 Fields.DOI: "10.17705/1cais.04607",
